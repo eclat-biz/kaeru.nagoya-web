@@ -1,6 +1,42 @@
 <?php
 
 //---------------------------------------------------------------------------
+// CSS・JavaScriptの読み込み
+//---------------------------------------------------------------------------
+function kaeru_enqueue_assets() {
+	$theme_version = wp_get_theme()->get( 'Version' );
+
+	wp_enqueue_style( 'kaeru-style', get_stylesheet_uri(), array(), $theme_version );
+	wp_enqueue_style( 'kaeru-google-fonts', 'https://fonts.googleapis.com/css?family=Gochi+Hand|Roboto:500', array(), null );
+	wp_enqueue_style( 'kaeru-font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css', array(), '4.5.0' );
+
+	wp_enqueue_script( 'kaeru-html5shiv', get_template_directory_uri() . '/js/html5shiv-printshiv.min.js', array(), '3.7.3', false );
+	wp_script_add_data( 'kaeru-html5shiv', 'conditional', 'lt IE 9' );
+
+	wp_enqueue_script( 'kaeru-skrollr', get_template_directory_uri() . '/js/skrollr.min.js', array(), '0.6.30', true );
+	$common_dependencies = array( 'jquery', 'kaeru-skrollr' );
+
+	if ( is_home() ) {
+		$maps_api_key = apply_filters( 'kaeru_google_maps_api_key', 'AIzaSyCCfipNj4pRiO3uarSCoMWkq6p5JH7tMC8' );
+		$maps_api_url = add_query_arg( array( 'key' => $maps_api_key ), 'https://maps.googleapis.com/maps/api/js' );
+
+		wp_enqueue_script( 'kaeru-google-maps', $maps_api_url, array(), null, true );
+		wp_enqueue_script( 'kaeru-bgswitcher', get_template_directory_uri() . '/js/jquery.bgswitcher.js', array( 'jquery' ), '0.4.30', true );
+		$common_dependencies[] = 'kaeru-google-maps';
+
+		$slide_images = array(
+			get_template_directory_uri() . '/images/fig_slide01.jpg',
+			get_template_directory_uri() . '/images/fig_slide02.jpg',
+			get_template_directory_uri() . '/images/fig_slide03.jpg',
+		);
+		$slider_script = 'jQuery(function($){$(".home_catch").bgswitcher({images:' . wp_json_encode( $slide_images ) . '});});';
+		wp_add_inline_script( 'kaeru-bgswitcher', $slider_script );
+	}
+
+	wp_enqueue_script( 'kaeru-common', get_template_directory_uri() . '/js/common.js', $common_dependencies, $theme_version, true );
+}
+add_action( 'wp_enqueue_scripts', 'kaeru_enqueue_assets' );
+//---------------------------------------------------------------------------
 //	セキュリティ対策
 //---------------------------------------------------------------------------
 remove_action('wp_head','wp_generator'); //	head内のWordpressバージョンを隠す
@@ -230,7 +266,8 @@ function is_mobile() {
 		'webmate' // Other iPhone browser
 	);
 	$pattern = '/' . implode( '|', $ua ) . '/i';
-	$match   = preg_match( $pattern, $_SERVER['HTTP_USER_AGENT'] );
+	$user_agent = isset( $_SERVER['HTTP_USER_AGENT'] ) ? sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ) ) : '';
+	$match      = preg_match( $pattern, $user_agent );
 	if ( $match === 1 ) {
 		return TRUE;
 	} else {

@@ -9,7 +9,7 @@
 		<?php endwhile; ?>
 		<?php endif; ?>
 		<?php if (function_exists("pagination")) {
-			pagination($additional_loop->max_num_pages);
+			pagination();
 		} ?>
 	</div>
 <?php get_footer(); ?>

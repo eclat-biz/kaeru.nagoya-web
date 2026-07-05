@@ -18,7 +18,7 @@
 			皆様一人ひとりの心に通じるアドバイスをさせていただきたいと思っています。</p>
 		</section>
 		<section class="gteeting_prof">
-			<figure><img src="<?php echo get_template_directory_uri(); ?>/images/fig_greeting01.jpg" alt="建物外観"></figure>
+			<figure><img src="<?php echo esc_url( get_template_directory_uri() . '/images/fig_greeting01.jpg' ); ?>" alt="建物外観"></figure>
 			<p class="name">株式会社　エクラ<br>代表取締役　福田 久美</p>
 			<p class="career">2013年4月2日 設立</p>
 		</section>

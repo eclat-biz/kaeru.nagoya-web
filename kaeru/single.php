@@ -5,8 +5,8 @@
 			<?php get_template_part( 'content-blog' ); ?>
 		<?php endwhile; endif; ?>
 		<nav class="single_nav">
-			<?php if(previous_post_link('%link', 'PREV')); ?>
-			<?php if(next_post_link('%link', 'Next')); ?>
+			<?php previous_post_link( '%link', 'PREV' ); ?>
+			<?php next_post_link( '%link', 'Next' ); ?>
 		</nav>
 	</div>
 <?php get_footer(); ?>

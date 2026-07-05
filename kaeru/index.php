@@ -22,9 +22,9 @@
 				foreach ( $my_posts as $post ) : setup_postdata($post); ?>
 				<li>
 					<?php if(get_post_type_object(get_post_type())->name == 'blog'): ?>
-						<a href="<?php the_permalink() ?>">
+						<a href="<?php echo esc_url( get_permalink() ); ?>">
 					<?php endif;?>
-					<span class="date"><?php echo get_post_time('Y.m.d') ;?></span><span class="category"><?php echo get_post_type_object(get_post_type())->label; ?></span><span class="title"><?php the_title(); ?></span>
+					<span class="date"><?php echo esc_html( get_post_time( 'Y.m.d' ) ); ?></span><span class="category"><?php echo esc_html( get_post_type_object( get_post_type() )->label ); ?></span><span class="title"><?php echo esc_html( get_the_title() ); ?></span>
 					<?php if(get_post_type_object(get_post_type())->name == 'blog'): ?>
 						</a>
 					<?php endif;?>
@@ -48,7 +48,7 @@
 		<p class="home_access">名古屋駅からは徒歩で約15分。<br>
 		近鉄「米野駅」より徒歩5分、 または名古屋臨海高速鉄道あおなみ線「ささしまライブ駅」より徒歩6分。</p>
 	</section>
-	<p class="to_top fade"><a href="#top"><img src="<?php echo get_template_directory_uri(); ?>/images/ico_to_top.png" height="53" width="53" alt="ページトップ"><span>ページトップ</span></a></p>
+	<p class="to_top fade"><a href="#top"><img src="<?php echo esc_url( get_template_directory_uri() . '/images/ico_to_top.png' ); ?>" height="53" width="53" alt="ページトップ"><span>ページトップ</span></a></p>
 <?php get_footer(); ?>
 
 
