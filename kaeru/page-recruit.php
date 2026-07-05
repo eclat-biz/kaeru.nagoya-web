@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 		<h1 class="hdg-lv1">採用情報<span class="en">Recruit</span></h1>
-		<figure class="catch"><img src="<?php echo get_template_directory_uri(); ?>/images/fig_recruit01.jpg" height="440" width="960" alt="採用イメージ"></figure>
+		<figure class="catch"><img src="<?php echo esc_url( get_template_directory_uri() . '/images/fig_recruit01.jpg' ); ?>" height="440" width="960" alt="採用イメージ"></figure>
 		<section class="recruit_main">
 			<h2 class="hdg-lv2">かえる調剤薬局で一緒に働きませんか。</h2>
 			<div class="recruit_box">
