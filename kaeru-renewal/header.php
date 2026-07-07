@@ -37,5 +37,3 @@
 	</div>
 </header>
 <main id="site-content" class="site-main">
-
-

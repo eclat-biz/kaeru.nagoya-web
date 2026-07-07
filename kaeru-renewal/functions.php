@@ -45,4 +45,3 @@ function kaeru_renewal_enqueue_assets(): void {
 	);
 }
 add_action( 'wp_enqueue_scripts', 'kaeru_renewal_enqueue_assets' );
-
