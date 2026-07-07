@@ -1,0 +1,133 @@
+:root {
+	--color-bg: #fffdf7;
+	--color-text: #26312b;
+	--color-primary: #4f9a5b;
+	--color-primary-dark: #2f6f3a;
+	--color-soft: #edf7e9;
+	--content-width: 1080px;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	background: var(--color-bg);
+	color: var(--color-text);
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	line-height: 1.7;
+}
+
+a {
+	color: var(--color-primary-dark);
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+.screen-reader-text {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
+}
+
+.screen-reader-text:focus {
+	position: static;
+	width: auto;
+	height: auto;
+	clip: auto;
+	display: inline-block;
+	padding: 0.5rem 1rem;
+	background: #fff;
+}
+
+.site-header,
+.site-footer {
+	background: #fff;
+}
+
+.site-header__inner,
+.site-footer__inner,
+.site-main {
+	width: min(100% - 2rem, var(--content-width));
+	margin-inline: auto;
+}
+
+.site-header__inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	padding: 1rem 0;
+}
+
+.site-title {
+	font-weight: 700;
+	text-decoration: none;
+}
+
+.site-navigation ul {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.site-main {
+	padding: 2rem 0 4rem;
+}
+
+.hero {
+	margin: 0 calc(50% - 50vw);
+	padding: 4rem 1rem;
+	background: var(--color-soft);
+}
+
+.hero__inner {
+	width: min(100%, var(--content-width));
+	margin-inline: auto;
+}
+
+.hero__eyebrow,
+.entry__meta,
+.post-card__date {
+	color: var(--color-primary-dark);
+	font-weight: 700;
+}
+
+.content-list,
+.entry,
+.not-found,
+.archive-header {
+	display: grid;
+	gap: 1.5rem;
+}
+
+.post-card {
+	padding: 1.25rem;
+	background: #fff;
+	border-radius: 1rem;
+}
+
+.button {
+	display: inline-block;
+	padding: 0.75rem 1.25rem;
+	border-radius: 999px;
+	background: var(--color-primary);
+	color: #fff;
+	text-decoration: none;
+}
+
+@media (max-width: 720px) {
+	.site-header__inner {
+		align-items: flex-start;
+		flex-direction: column;
+	}
+}
